@@ -1,0 +1,179 @@
+{
+  "info": {
+    "name": "Kong OAuth2 Setup",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "1. Create Consumer",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/x-www-form-urlencoded"
+          }
+        ],
+        "body": {
+          "mode": "urlencoded",
+          "urlencoded": [
+            {
+              "key": "username",
+              "value": "finance-app-client"
+            }
+          ]
+        },
+        "url": {
+          "raw": "http://localhost:8001/consumers",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8001",
+          "path": ["consumers"]
+        }
+      }
+    },
+    {
+      "name": "2. Add OAuth2 Plugin Globally",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/x-www-form-urlencoded"
+          }
+        ],
+        "body": {
+          "mode": "urlencoded",
+          "urlencoded": [
+            {
+              "key": "name",
+              "value": "oauth2"
+            },
+            {
+              "key": "config.scopes",
+              "value": "read,write"
+            },
+            {
+              "key": "config.mandatory_scope",
+              "value": "true"
+            },
+            {
+              "key": "config.enable_client_credentials",
+              "value": "true"
+            },
+            {
+              "key": "config.enable_authorization_code",
+              "value": "true"
+            }
+          ]
+        },
+        "url": {
+          "raw": "http://localhost:8001/plugins",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8001",
+          "path": ["plugins"]
+        }
+      }
+    },
+    {
+      "name": "3. Create OAuth2 Application",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/x-www-form-urlencoded"
+          }
+        ],
+        "body": {
+          "mode": "urlencoded",
+          "urlencoded": [
+            {
+              "key": "name",
+              "value": "Finance API Client"
+            },
+            {
+              "key": "client_id",
+              "value": "finance-client-123"
+            },
+            {
+              "key": "client_secret",
+              "value": "finance-secret-456"
+            },
+            {
+              "key": "redirect_uris",
+              "value": "http://localhost:3000/callback"
+            }
+          ]
+        },
+        "url": {
+          "raw": "http://localhost:8001/consumers/finance-app-client/oauth2",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8001",
+          "path": ["consumers", "finance-app-client", "oauth2"]
+        }
+      }
+    },
+    {
+      "name": "4. Get Access Token",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/x-www-form-urlencoded"
+          }
+        ],
+        "body": {
+          "mode": "urlencoded",
+          "urlencoded": [
+            {
+              "key": "grant_type",
+              "value": "client_credentials"
+            },
+            {
+              "key": "client_id",
+              "value": "finance-client-123"
+            },
+            {
+              "key": "client_secret",
+              "value": "finance-secret-456"
+            },
+            {
+              "key": "scope",
+              "value": "read"
+            }
+          ]
+        },
+        "url": {
+          "raw": "http://localhost:8000/oauth2/token",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8000",
+          "path": ["oauth2", "token"]
+        }
+      }
+    },
+    {
+      "name": "5. Test Protected API",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer YOUR_ACCESS_TOKEN_HERE"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:8000/accounts",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8000",
+          "path": ["accounts"]
+        }
+      }
+    }
+  ]
+}
