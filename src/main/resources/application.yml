@@ -7,6 +7,7 @@ spring:
     url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://dpg-d4uquf63jp1c73e8dhug-a.oregon-postgres.render.com:5432/smartaggregator}
     username: ${SPRING_DATASOURCE_USERNAME:smartaggregator_user}
     password: ${SPRING_DATASOURCE_PASSWORD:m9up3D4FTTQKpEWB16Ndo3WkzL7xyQTo}
+    driver-class-name: org.postgresql.Driver
   
   jpa:
     hibernate:
