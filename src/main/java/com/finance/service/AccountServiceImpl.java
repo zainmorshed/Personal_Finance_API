@@ -34,6 +34,11 @@ public class AccountServiceImpl implements AccountService {
         accountRepository.deleteById(id);
     }
 
+    @Override
+    public List<Account> getAccountsByUserId(Long userId) {
+        return accountRepository.findByUserId(userId);
+    }
+
 }
 
 /*

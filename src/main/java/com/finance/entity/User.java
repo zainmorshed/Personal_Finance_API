@@ -1,5 +1,7 @@
 package com.finance.entity;
 
+import java.math.BigDecimal;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -15,9 +17,9 @@ public class User {
     private Long id;
     private String name;
     private String email;
-    private String annualIncome;
-    private String checkingBalance;
-    private String savingsBalance;
+    private BigDecimal annualIncome;
+    private BigDecimal checkingBalance;
+    private BigDecimal savingsBalance;
 //dont need parrameterized constructor since this will be...
 // implemented dynamically during runtime by parsing the json ...
 // body and mapping each value to their respective variables
@@ -36,15 +38,15 @@ public class User {
         return email;
     }
 
-    public String getAnnualIncome() {
+    public BigDecimal getAnnualIncome() {
         return annualIncome;
     }
 
-    public String getCheckingBalance() {
+    public BigDecimal getCheckingBalance() {
         return checkingBalance;
     }
 
-    public String getSavingsBalance() {
+    public BigDecimal getSavingsBalance() {
         return savingsBalance;
     }
 
@@ -61,15 +63,15 @@ public class User {
         this.email = email;
     }
 
-    public void setAnnualIncome(String annualIncome) {
+    public void setAnnualIncome(BigDecimal annualIncome) {
         this.annualIncome = annualIncome;
     }
 
-    public void setCheckingBalance(String checkingBalance) {
+    public void setCheckingBalance(BigDecimal checkingBalance) {
         this.checkingBalance = checkingBalance;
     }
 
-    public void setSavingsBalance(String savingsBalance) {
+    public void setSavingsBalance(BigDecimal savingsBalance) {
         this.savingsBalance = savingsBalance;
     }
 

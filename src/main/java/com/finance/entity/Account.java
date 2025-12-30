@@ -1,5 +1,6 @@
 package com.finance.entity;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import com.finance.entity.User;
 
@@ -17,7 +18,7 @@ public class Account {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;  
-    private String balance;
+    private BigDecimal balance;
     private accountType type;
     @ManyToOne
     @JoinColumn(name = "user_id")
@@ -41,10 +42,10 @@ public class Account {
     public void setName(String name) {
         this.name = name;
     }
-    public String getBalance() {
+    public BigDecimal getBalance() {
         return balance;
     }
-    public void setBalance(String balance) {
+    public void setBalance(BigDecimal balance) {
         this.balance = balance;
     }
     public Enum getType() {
