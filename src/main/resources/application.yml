@@ -3,19 +3,16 @@ spring:
     name: PersonalFinanceApi
   
   datasource:
-    url: jdbc:postgresql://dpg-d4uquf63jp1c73e8dhug-a.oregon-postgres.render.com:5432/smartaggregator
-    username: smartaggregator_user
-    password: m9up3D4FTTQKpEWB16Ndo3WkzL7xyQTo
-    driver-class-name: org.postgresql.Driver
+    url: ${SPRING_DATASOURCE_URL}
+    username: ${SPRING_DATASOURCE_USERNAME}
+    password: ${SPRING_DATASOURCE_PASSWORD}
+    driver-class-name: ${SPRING_DATASOURCE_DRIVER_CLASS_NAME}
   
   jpa:
     hibernate:
-      ddl-auto: update
+      ddl-auto: ${SPRING_JPA_HIBERNATE_DDL_AUTO}
     show-sql: false
-    properties:
-      hibernate:
-        dialect: org.hibernate.dialect.PostgreSQLDialect
 
 server:
-  port: 10000
+  port: ${PORT:10000}
   address: 0.0.0.0
